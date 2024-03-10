@@ -1,4 +1,4 @@
-#Identity Providers API
+Identity Providers API
 
 The Okta Identity Providers API provides operations to manage federations with external Identity Providers (IdP). For example, your app can support signing in with credentials from Apple, Facebook, Google, LinkedIn, Microsoft, an enterprise IdP using SAML 2.0, or an IdP using the OpenID Connect (OIDC) protocol.
 
