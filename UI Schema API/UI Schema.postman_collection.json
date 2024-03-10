@@ -1,0 +1,258 @@
+{
+	"info": {
+		"_postman_id": "f1837703-7b57-4fc8-94a4-d539ee43c691",
+		"name": "UI Schema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33509515"
+	},
+	"item": [
+		{
+			"name": "Create UI Schema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let policyCreateResponseData = JSON.parse(responseBody)",
+							"let profileEnrollmentPolicyId = policyCreateResponseData.id",
+							"",
+							"postman.setEnvironmentVariable(\"profileEnrollmentPolicyId\", profileEnrollmentPolicyId)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Example User Profile Enrollment Policy\",\n    \"type\": \"PROFILE_ENROLLMENT\",\n    \"description\": \"Standard policy for profile enrollment\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/policies/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"policies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UI Schemas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let profileEnrollmentPolicyRule = JSON.parse(responseBody)[0]",
+							"let profileEnrollmentPolicyRuleId = profileEnrollmentPolicyRule.id ",
+							"",
+							"postman.setEnvironmentVariable(\"profileEnrollmentPolicyRuleId\", profileEnrollmentPolicyRuleId)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/policies/{{profileEnrollmentPolicyId}}/rules",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"policies",
+						"{{profileEnrollmentPolicyId}}",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a UI Schema by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"let profileEnrollmentPolicyRule = JSON.parse(responseBody)[0]",
+							"let profileEnrollmentPolicyRuleId = profileEnrollmentPolicyRule.id ",
+							"",
+							"postman.setEnvironmentVariable(\"profileEnrollmentPolicyRuleId\", profileEnrollmentPolicyRuleId)"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/policies/{{profileEnrollmentPolicyId}}/rules",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"policies",
+						"{{profileEnrollmentPolicyId}}",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a UI Schema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"system\": true,\n    \"id\": \"{{profileEnrollmentPolicyRuleId}}\",\n    \"name\": \"Catch-all Rule\",\n    \"priority\": 99,\n    \"status\": \"ACTIVE\",\n    \"conditions\": null,\n    \"type\": \"PROFILE_ENROLLMENT\",\n    \"actions\": {\n        \"profileEnrollment\": {\n            \"access\": \"ALLOW\",\n            \"unknownUserAction\": \"REGISTER\",\n            \"preRegistrationInlineHooks\": null,\n            \"profileAttributes\": [\n                {\n                    \"name\": \"email\",\n                    \"label\": \"Email\",\n                    \"required\": true\n                },\n                {\n                    \"name\": \"fax\",\n                    \"label\": \"Fax\",\n                    \"required\": true\n                }\n            ],\n            \"targetGroupIds\": null,\n            \"activationRequirements\": {\n                \"emailVerification\": true\n            }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/policies/{{profileEnrollmentPolicyId}}/rules/{{profileEnrollmentPolicyRuleId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"policies",
+						"{{profileEnrollmentPolicyId}}",
+						"rules",
+						"{{profileEnrollmentPolicyRuleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a UI Schema",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/policies/{{policyId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"policies",
+						"{{policyId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "apikey",
+			"value": "00m_X__2RzF2D2QAgWxNSH4X9wHMD1Eav8MrE88bNk"
+		},
+		{
+			"key": "url",
+			"value": "https://dev-jake-2.trexcloud.com/"
+		},
+		{
+			"key": "id",
+			"value": "uis4b8myu7rRnwQNy0g7"
+		}
+	]
+}

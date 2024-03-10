@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "f9b841ea-b192-4c89-8086-d57fb9781d02",
+		"name": "Custom Identity Source V1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33509515"
+	},
+	"item": [
+		{
+			"name": "Create an import session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"if (jsonData.id) {",
+							"    postman.setEnvironmentVariable(\"sessionId\", jsonData.id);",
+							"}",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BulkImport Upsert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"entityType\": \"USERS\",\n    \"profiles\": [\n        {\n            \"externalId\": \"{{$guid}}\",\n            \"profile\": {\n                \"userName\": \"isaac16.i.brock@example.com\",\n                \"firstName\": \"iiiii16\",\n                \"lastName\": \"Brock16\",\n                \"email\": \"isaac16.i.brock14@example.com\",\n                \"secondEmail\": \"isaac2.c.brock16.assitant@example.com\",\n                \"mobilePhone\": \"555-415-1337\",\n                \"homeAddress\": \"Kirkland, WA\"\n            }\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-upsert",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions",
+						"{{sessionId}}",
+						"bulk-upsert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BulkImport Delete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"entityType\": \"USERS\",\n    \"profiles\": [\n      {\n        \"externalId\":\"EXT123456784C1IE\"\n      },\n      {\n        \"externalId\":\"EXT123456784C2IE\"\n      },\n      {\n        \"externalId\":\"EXT123456784C3IE\"\n      }    \n    ]\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/bulk-delete",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions",
+						"{{sessionId}}",
+						"bulk-delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trigger an import session",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}/start-import",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions",
+						"{{sessionId}}",
+						"start-import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an import session",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions",
+						"{{sessionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an import session",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions/{{sessionId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions",
+						"{{sessionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Current Session",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/identity-sources/{{identitySourceId}}/sessions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity-sources",
+						"{{identitySourceId}}",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

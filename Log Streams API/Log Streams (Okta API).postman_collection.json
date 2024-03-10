@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "d445e94e-721a-49b4-8e09-d27941e3df66",
+		"name": "Log Streams (Okta API)",
+		"description": "Management CRUD API for Log Streaming\n\nContact Support:\n Name: Okta Developer Team\n Email: devex-public@okta.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33509515"
+	},
+	"item": [
+		{
+			"name": "Lifecycle Operations",
+			"item": [
+				{
+					"name": "Activate log stream",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "SSWS {{apikey}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/logStreams/{{logStreamId}}/lifecycle/activate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logStreams",
+								"{{logStreamId}}",
+								"lifecycle",
+								"activate"
+							]
+						},
+						"description": "Activate a Log Stream instance"
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate log stream",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "SSWS {{apikey}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/logStreams/{{logStreamId}}/lifecycle/deactivate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"logStreams",
+								"{{logStreamId}}",
+								"lifecycle",
+								"deactivate"
+							]
+						},
+						"description": "Deactivate a Log Stream instance"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List all log streams",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/logStreams?after=<string>&filter=<string>&limit=20",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logStreams"
+					],
+					"query": [
+						{
+							"key": "after",
+							"value": "<string>",
+							"description": "Specifies the pagination cursor for the next page of instances\t"
+						},
+						{
+							"key": "filter",
+							"value": "<string>",
+							"description": "Filters log stream instances by status or type expression"
+						},
+						{
+							"key": "limit",
+							"value": "20",
+							"description": "Specifies the number of results per page (maximum 200)\t"
+						}
+					]
+				},
+				"description": "Get a list of all configured Log Stream instances"
+			},
+			"response": []
+		},
+		{
+			"name": "Add log stream",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"settings\": {\n        \"accountId\": \"<string>\",\n        \"eventSourceName\": \"<string>\",\n        \"region\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"name\": \"<string>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/logStreams",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logStreams"
+					]
+				},
+				"description": "Adds a new Log Stream application to your Okta organization"
+			},
+			"response": []
+		},
+		{
+			"name": "Get log stream",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/logStreams/{{logStreamId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logStreams",
+						"{{logStreamId}}"
+					]
+				},
+				"description": "Retrieve the information of the Log Stream instance with the matching ID."
+			},
+			"response": []
+		},
+		{
+			"name": "Update log stream",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"<string>\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/logStreams/{{logStreamId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logStreams",
+						"{{logStreamId}}"
+					]
+				},
+				"description": "Update the information of an existing Log Stream instance."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete log stream",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/logStreams/{{logStreamId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"logStreams",
+						"{{logStreamId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://virtserver.swaggerhub.com/logStreams/1.0",
+			"type": "string"
+		}
+	]
+}

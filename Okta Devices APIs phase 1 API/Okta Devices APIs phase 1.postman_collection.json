@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "8ce99f82-a464-432c-a1d1-97a0a9f00b4b",
+		"name": "Okta Devices APIs phase 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33509515"
+	},
+	"item": [
+		{
+			"name": "GET all devices",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET device by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE device by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		},
+		{
+			"name": "DEACTIVATE device by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}/lifecycle/deactivate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}",
+						"lifecycle",
+						"deactivate"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		},
+		{
+			"name": "ACTIVATE device by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}/lifecycle/activate",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}",
+						"lifecycle",
+						"activate"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		},
+		{
+			"name": "SUSPEND device by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}/lifecycle/suspend",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}",
+						"lifecycle",
+						"suspend"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		},
+		{
+			"name": "UNSUSPEND device by id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/v1/devices/{{device_id}}/lifecycle/unsuspend",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"devices",
+						"{{device_id}}",
+						"lifecycle",
+						"unsuspend"
+					]
+				},
+				"description": "https://apoorva.okta1.com/api/v1/devices/guo11icDsdtnVwOb90g4"
+			},
+			"response": []
+		}
+	]
+}

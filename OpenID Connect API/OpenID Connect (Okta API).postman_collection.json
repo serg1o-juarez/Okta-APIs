@@ -1,0 +1,1289 @@
+{
+	"info": {
+		"_postman_id": "c24b5b7c-6a06-4256-b057-9c679c7ca03d",
+		"name": "OpenID Connect (Okta API)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33509515"
+	},
+	"item": [
+		{
+			"name": "Get OpenID Provider Metadata",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/.well-known/openid-configuration?client_id={{clientId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						".well-known",
+						"openid-configuration"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Introspect Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "text"
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/introspect",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Introspect Token with Client Secret JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "text"
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion_type",
+							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion",
+							"value": "{{clientSecretJwt}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/introspect",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"introspect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revoke Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "text"
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/revoke",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"revoke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revoke Token with Client Secret JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "text"
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion_type",
+							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion",
+							"value": "{{clientSecretJwt}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/revoke",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"revoke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UserInfo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/userinfo",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"userinfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID Token (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=id_token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "id_token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID Token + Access Token (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=id_token token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "id_token token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code&response_mode=query&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "response_mode",
+							"value": "query"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code with PKCE  (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code&response_mode=query&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}&code_challenge_method=S256&code_challenge={{codeChallenge}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "response_mode",
+							"value": "query"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						},
+						{
+							"key": "code_challenge_method",
+							"value": "S256"
+						},
+						{
+							"key": "code_challenge",
+							"value": "{{codeChallenge}}"
+						}
+					]
+				},
+				"description": "```js\nconst base64url = require('base64url');\nvar crypto = require('crypto');\ncrypto.createHash('sha256').update('at83hsVcajT5nfc2FVnKSxI6bsuU2Tq2aoVhEFhEO1A').digest();\nvar buffer = crypto.createHash('sha256').update('at83hsVcajT5nfc2FVnKSxI6bsuU2Tq2aoVhEFhEO1A').digest();\nbase64url.encode(buffer)\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + Access Token (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + Access Token with PKCE (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}&code_challenge_method=S256&code_challenge={{codeChallenge}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						},
+						{
+							"key": "code_challenge_method",
+							"value": "S256"
+						},
+						{
+							"key": "code_challenge",
+							"value": "{{codeChallenge}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + ID Token (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code id_token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code id_token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + ID Token with PKCE (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code id_token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}&code_challenge_method=S256&code_challenge={{codeChallenge}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code id_token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						},
+						{
+							"key": "code_challenge_method",
+							"value": "S256"
+						},
+						{
+							"key": "code_challenge",
+							"value": "{{codeChallenge}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + ID Token + Access Token (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code token id_token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code token id_token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Authorization Code + ID Token + Access Token with PKCE (Requires Inteceptor)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/oauth2/v1/authorize?client_id={{clientId}}&response_type=code token id_token&response_mode=fragment&scope={{scopes}}&redirect_uri={{redirectUri}}&state={{state}}&nonce={{$guid}}&code_challenge_method=S256&code_challenge={{codeChallenge}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "{{clientId}}"
+						},
+						{
+							"key": "response_type",
+							"value": "code token id_token"
+						},
+						{
+							"key": "response_mode",
+							"value": "fragment"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}"
+						},
+						{
+							"key": "state",
+							"value": "{{state}}"
+						},
+						{
+							"key": "nonce",
+							"value": "{{$guid}}"
+						},
+						{
+							"key": "code_challenge_method",
+							"value": "S256"
+						},
+						{
+							"key": "code_challenge",
+							"value": "{{codeChallenge}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID Token with Code",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "{{authorizationCode}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID Token with Code and Client Secret JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "{{authorizationCode}}",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion_type",
+							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion",
+							"value": "{{clientSecretJwt}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ID Token with Code and PKCE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{clientId}}",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "{{authorizationCode}}",
+							"type": "text"
+						},
+						{
+							"key": "code_verifier",
+							"value": "{{codeVerifier}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Token with Refresh Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refreshToken}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Token with Refresh Token and Client Secret JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refreshToken}}",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion_type",
+							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion",
+							"value": "{{clientSecretJwt}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Token with Resource Owner Password Credentials",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Access Token with Resource Owner Password Credentials and Client Secret JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirectUri}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{scopes}}",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion_type",
+							"value": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+							"type": "text"
+						},
+						{
+							"key": "client_assertion",
+							"value": "{{clientSecretJwt}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/oauth2/v1/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth2",
+						"v1",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
