@@ -6000,3 +6000,11 @@ Example
 "tokenAuthScheme": null
 }]
 
+Identity Provider Social Authentication Token properties
+Property 	Description 	DataType 	Nullable 	Unique 	Readonly
+expiresAt 	The date that the token expires 	Date 	TRUE 	FALSE 	TRUE
+id 	Unique identifier for the token 	String 	FALSE 	TRUE 	TRUE
+scopes 	The scopes that the token is good for 	Array of Strings 	FALSE 	FALSE 	TRUE
+token 	The raw token 	String 	FALSE 	TRUE 	TRUE
+tokenAuthScheme 	The token authentication scheme as defined by the social provider 	String 	FALSE 	FALSE 	TRUE
+tokenType 	The type of token defined by the OAuth Token Exchange Spec (opens new window) 	String 	TRUE 	TRUE 	TRUE
